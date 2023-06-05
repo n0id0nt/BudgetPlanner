@@ -1,0 +1,17 @@
+{% extends 'budget_planner_app/base.html' %}
+{% block title %}Sign up{% endblock %}
+{% block main_title %}Sign up{% endblock %}
+{% block sub_title %}Complete the following to sign up{% endblock %}
+{% block content %}
+<form method="POST" class="log-form">
+    <label for="username">Username</label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+
+    <label for="password">Password</label>
+    <input type="password" placeholder="Enter Password" name="password1" required>
+
+    <div class="clearfix">
+        <button type="submit" class="signupbtn">Sign Up</button>
+    </div>
+</form>
+{% endblock %}
