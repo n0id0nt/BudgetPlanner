@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import ignore
+from budget_planner import ignore
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qrezd#88v#w=p24#06_)odvvtor*9)8qfk35583sv5#&_3*jnh'
+SECRET_KEY = ignore.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'budget_planner_app',
-    'social_django'
+    'social_django',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -130,7 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SOCIAL_AUTH_TRAILING_SLASH = False  # Remove trailing slash from routes
 SOCIAL_AUTH_AUTH0_DOMAIN = ignore.SOCIAL_AUTH_AUTH0_DOMAIN
 SOCIAL_AUTH_AUTH0_KEY = ignore.SOCIAL_AUTH_AUTH0_KEY
-SOCIAL_AUTH_AUTH0_SECRET = '<YOUR-AUTH0-CLIENT-SECRET>'
+SOCIAL_AUTH_AUTH0_SECRET = ignore.SOCIAL_AUTH_AUTH0_SECRET
 SOCIAL_AUTH_AUTH0_SCOPE = [
     'openid',
     'profile',

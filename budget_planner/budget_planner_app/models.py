@@ -21,3 +21,22 @@ class Post(models.Model):
 class Report(models.Model):
     reported_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+class Item(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    desc = models.CharField(max_length=500)
+    expenditure = models.BooleanField(default=False)
+    recurring = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
+
+class Prediction(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=22, decimal_places=2)
+
+class Actual(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    date = models.DateField()
+    amount = models.DecimalField(max_digits=22, decimal_places=2)

@@ -12,26 +12,23 @@
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start pl-2">
-              <a href="/" class="navbar-item">Home</a>
-            </div>
+                <a href="/" class="navbar-item">Home</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'reports' %}" class="navbar-item">Reports</a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <a href="{% url 'budget' %}" class="navbar-item">Budget</a>
+                {% endif %}
+              </div>
             <div class="navbar-end pr-2">
               <div class="navbar-item">
-              </div>
-            </div>
-          </div>
-          <div class="navbar-end pr-2">
-            <div class="navbar-item">
-              <div class="buttons">
-              <AmpContent>
-                <a class="button is-primary" href="/logout/">Logout</a>
-              
-          </AmpContent>
-          
-          <NonAmpContent>
-          
-                <a class="button is-primary" href="/login/auth0">Login</a>
-              
-          </NonAmpContent>
+                <div class="buttons">
+                    {% if user.is_authenticated %}
+                    <a class="button is-primary" href="/logout/">Logout</a>
+                    {% else %}
+                    <a class="button is-primary" href="/login/auth0">Login</a>
+                    {% endif %}
+                </div>
               </div>
             </div>
           </div>

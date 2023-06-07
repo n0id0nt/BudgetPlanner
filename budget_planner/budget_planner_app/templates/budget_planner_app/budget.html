@@ -1,0 +1,39 @@
+{% extends 'budget_planner_app/base.html' %}
+
+{% block title %}Budget{% endblock %}
+{% block main_title %}Budget{% endblock %}
+{% block sub_title %}Create and analyse your budget{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="{% url 'create_item' %}">
+    {% csrf_token %}
+    {{ item_create_form.as_p }}
+    <button class="button is-info">Create Item</button>
+</form>
+
+{% for value in values %}
+<article class="media mt-5">
+    <div class="media-content">
+        <div class="content">
+            <p>
+                <strong>{{ value.item.name }}</strong> 
+                <small>{{ value.item.expenditure }}</small> 
+                <small>{{ value.item.recurring }}</small> 
+                <br/>
+                {{ value.item.desc }}
+                <form method="POST" action="{% url 'create_prediction' %}">
+                    {% csrf_token %}
+                    {{ value.prediction_form.as_p }}
+                    <button class="button is-info">Create Prediction</button>
+                </form>
+            </p>
+        </div>
+    </div>
+    <div class="media-right">
+        <a href="{% url 'delete_item' value.item.id %}" class="delete"></a>
+    </div>
+</article>
+{% endfor %}
+
+{% endblock %}
